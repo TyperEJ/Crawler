@@ -13,6 +13,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+        "linecorp/line-bot-sdk": "^3.13",
         "predis/predis": "^1.1"
     },
     "require-dev": {
