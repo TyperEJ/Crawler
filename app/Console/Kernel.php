@@ -28,6 +28,10 @@ class Kernel extends ConsoleKernel
             ->everyMinute();
         $schedule->command('crawler:start', ['MacShop'])
             ->everyMinute();
+        $schedule->command('crawler:start', ['MobilePay'])
+            ->everyMinute();
+        $schedule->command('crawler:start', ['soho'])
+            ->everyMinute();
     }
 
     /**

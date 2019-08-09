@@ -14,7 +14,7 @@ class Crawler extends Command
      *
      * @var string
      */
-    protected $signature = 'crawler:start {board}';
+    protected $signature = 'crawler:start {board} {--page=3}';
 
     /**
      * The console command description.
@@ -42,7 +42,9 @@ class Crawler extends Command
     {
         $board = $this->argument('board');
 
-        $pttCrawler->start("https://www.ptt.cc/bbs/{$board}/index.html",5);
+        $page = $this->option('page');
+
+        $pttCrawler->start("https://www.ptt.cc/bbs/{$board}/index.html",$page);
 
         $articles = $pttCrawler->getArticles();
 

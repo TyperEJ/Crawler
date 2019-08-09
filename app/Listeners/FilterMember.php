@@ -48,10 +48,8 @@ class FilterMember implements ShouldQueue
 
         $memberUids = $filtered->pluck('lineMember.uid')->unique();
 
-        $bot = $this->bot;
-
-        $memberUids->map(function($memberUid) use ($bot,$article){
-            $bot->pushMessage($memberUid,$article->getMessageBuilder());
+        $memberUids->map(function($memberUid) use ($article){
+            $this->bot->pushMessage($memberUid,$article->getMessageBuilder());
         });
     }
 

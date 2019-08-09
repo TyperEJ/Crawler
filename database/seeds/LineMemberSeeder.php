@@ -22,5 +22,29 @@ class LineMemberSeeder extends Seeder
             'board' => 'MacShop',
             'keyword' => 'pod&台中',
         ]);
+
+        MemberBoardKeyword::create([
+            'line_member_id' => $lineMember->id,
+            'board' => 'MacShop',
+            'keyword' => 'pod&全國',
+        ]);
+
+        MemberBoardKeyword::create([
+            'line_member_id' => $lineMember->id,
+            'board' => 'Lifeismoney',
+            'keyword' => '情報',
+        ]);
+
+        MemberBoardKeyword::create([
+            'line_member_id' => $lineMember->id,
+            'board' => 'MobilePay',
+            'keyword' => '情報',
+        ]);
+
+        MemberBoardKeyword::create([
+            'line_member_id' => $lineMember->id,
+            'board' => 'soho',
+            'keyword' => '徵才&程式',
+        ]);
     }
 }
