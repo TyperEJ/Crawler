@@ -12,6 +12,8 @@ class MemberBoardKeyword extends Model
         'keyword'
     ];
 
+    protected $hidden = ['id','line_member_id','created_at','updated_at'];
+
     public function lineMember()
     {
         return $this->belongsTo(LineMember::class);

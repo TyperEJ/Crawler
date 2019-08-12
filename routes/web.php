@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/subscribe','SubscribeController@index');
+
+Route::get('line-member/{uid}', 'LineMemberController@show');
+Route::post('line-member', 'LineMemberController@store');

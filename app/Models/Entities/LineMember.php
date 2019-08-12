@@ -10,6 +10,10 @@ class LineMember extends Model
         'uid'
     ];
 
+    protected $hidden = ['created_at','updated_at'];
+
+    protected $with = ['keywords'];
+
     public function keywords()
     {
         return $this->hasMany(MemberBoardKeyword::class);
