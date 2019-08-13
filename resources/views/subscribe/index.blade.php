@@ -53,10 +53,7 @@
 <script src="https://cdn.jsdelivr.net/npm/at-ui/dist/at.min.js"></script>
 <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://cdn.bootcss.com/vConsole/3.3.2/vconsole.min.js"></script>
 <script>
-    var vConsole = new VConsole();
-
     var vm = new Vue({
         el: '#app',
         data: {
