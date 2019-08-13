@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="user-scalable=no">
     <title>Subscribe</title>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/at-ui-style/css/at.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/at-ui-style/css/at.min.css">
     <style>
         .at-checkbox{
             margin-left:16px;
@@ -50,7 +50,7 @@
 <input type="hidden" id="csrf_token" value="{{ csrf_token() }}">
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="//cdn.jsdelivr.net/npm/at-ui/dist/at.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/at-ui/dist/at.min.js"></script>
 <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.bootcss.com/vConsole/3.3.2/vconsole.min.js"></script>
@@ -81,8 +81,6 @@
                     window.alert("Error getting profile: " + error);
                 });
             });
-
-            this.alertModal();
         },
         methods:{
             initProfile: function(){
