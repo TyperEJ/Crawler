@@ -55,29 +55,40 @@ class Crawler extends Command
 
     protected function saveArticles($articles,$board)
     {
-        $queryLatest = PttArticle::query()
+        $queryExists = PttArticle::query()
             ->select('article_id')
             ->where(['board' => $board])
-            ->orderBy('id','desc');
+            ->orderBy('id','desc')
+            ->limit(count($articles));
 
-        $latestArticle = $queryLatest->exists() ? $queryLatest->first() : $queryLatest->newModelInstance();
+        $existArticles = $queryExists->count() ? $queryExists->get() : collect();
 
         $articles = collect($articles);
 
-        $searchKey = $articles->search(function($item) use ($latestArticle){
-            list($article_id) = $item;
+        foreach ($existArticles as $existArticle)
+        {
+            $searchKey = $articles->search(function($item) use ($existArticle){
+                list($article_id) = $item;
 
-            return $article_id === $latestArticle->article_id;
-        });
+                return $article_id === $existArticle->article_id;
+            });
 
-        $searchKey++;
+            if($searchKey !== false)
+            {
+                $searchKey++;
 
-        $articles = $articles->splice($searchKey);
+                $articles = $articles->splice($searchKey);
+
+                break;
+            }
+        }
 
         $articles->map(function($article) use ($board){
+
             array_push($article,$board);
 
             ProcessPttArticle::dispatch($article);
+
         });
     }
 }
