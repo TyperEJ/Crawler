@@ -10,7 +10,7 @@ class LineMemberController extends Controller
 {
     public function show($uid)
     {
-        $queryMember = LineMember::query()->where('uid','=',$uid);
+        $queryMember = LineMember::query()->firstOrCreate(['uid' => $uid]);
 
         if(!$queryMember->exists())
         {
