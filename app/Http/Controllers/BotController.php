@@ -2,20 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\BoardListEnum;
 use App\Models\Entities\LineMember;
 
-class SubscribeController extends Controller
+class BotController extends Controller
 {
-    public function listBoard()
-    {
-        return response()
-            ->json(BoardListEnum::getList());
-    }
-
     public function index($uid)
     {
         $queryMember = LineMember::query()
+            ->select(['channel_secret','channel_token'])
             ->where(['uid' => $uid]);
 
         if(!$queryMember->exists())
@@ -25,10 +19,10 @@ class SubscribeController extends Controller
                 ->setStatusCode(404);
         }
 
-        $keywords = $queryMember->first()->keywords;
+        $lineMember = $queryMember->first();
 
         return response()
-            ->json($keywords);
+            ->json($lineMember);
     }
 
     public function update($uid)
@@ -45,11 +39,10 @@ class SubscribeController extends Controller
 
         $lineMember = $queryMember->first();
 
-        $lineMember->keywords()->delete();
+        $lineMember->channel_secret = request()->get('channelSecret');
+        $lineMember->channel_token = request()->get('channelToken');
 
-        $keywords = request()->get('subscribes');
-
-        $lineMember->keywords()->createMany($keywords);
+        $lineMember->save();
 
         return response()
             ->json('success')

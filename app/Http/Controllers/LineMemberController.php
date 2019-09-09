@@ -10,14 +10,11 @@ class LineMemberController extends Controller
 {
     public function show($uid)
     {
-        $queryMember = LineMember::query()->firstOrCreate(['uid' => $uid]);
+        $lineMember = LineMember::query()
+            ->with('keywords')
+            ->firstOrCreate(['uid' => $uid]);
 
-        if(!$queryMember->exists())
-        {
-            return response('Not Found LineMember',404);
-        }
-
-        return $queryMember->first();
+        return $lineMember;
     }
 
     public function store(Request $request)
