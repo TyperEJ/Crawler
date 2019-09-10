@@ -6,38 +6,31 @@ use App\Models\Entities\LineMember;
 
 class BotController extends Controller
 {
-    public function index($uid)
+    public function index()
     {
-        $queryMember = LineMember::query()
-            ->select(['channel_secret','channel_token'])
-            ->where(['uid' => $uid]);
+        $lineMember = auth('api')->user();
 
-        if(!$queryMember->exists())
+        if(!$lineMember)
         {
             return response()
                 ->json('not found line member')
                 ->setStatusCode(404);
         }
-
-        $lineMember = $queryMember->first();
 
         return response()
             ->json($lineMember);
     }
 
-    public function update($uid)
+    public function update()
     {
-        $queryMember = LineMember::query()
-            ->where(['uid' => $uid]);
+        $lineMember = auth('api')->user();
 
-        if(!$queryMember->exists())
+        if(!$lineMember)
         {
             return response()
                 ->json('not found line member')
                 ->setStatusCode(404);
         }
-
-        $lineMember = $queryMember->first();
 
         $lineMember->channel_secret = request()->get('channelSecret');
         $lineMember->channel_token = request()->get('channelToken');

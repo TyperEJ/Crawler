@@ -50,7 +50,6 @@ class LineMemberController extends Controller
 
         return response()
             ->json([
-                'uid' => $uid,
                 'token' => $token
             ])
             ->setStatusCode(200);

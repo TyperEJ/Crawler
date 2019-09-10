@@ -19,7 +19,7 @@ class LineMember extends Model implements AuthenticatableContract,JWTSubject
         'channel_token',
     ];
 
-    protected $hidden = ['created_at','updated_at'];
+    protected $hidden = ['uid','created_at','updated_at'];
 
     public function keywords()
     {

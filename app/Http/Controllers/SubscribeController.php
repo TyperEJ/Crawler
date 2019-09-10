@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Enums\BoardListEnum;
-use App\Models\Entities\LineMember;
 
 class SubscribeController extends Controller
 {
@@ -13,37 +12,33 @@ class SubscribeController extends Controller
             ->json(BoardListEnum::getList());
     }
 
-    public function index($uid)
+    public function index()
     {
-        $queryMember = LineMember::query()
-            ->where(['uid' => $uid]);
+        $lineMember = auth('api')->user();
 
-        if(!$queryMember->exists())
+        if(!$lineMember)
         {
             return response()
                 ->json('not found line member')
                 ->setStatusCode(404);
         }
 
-        $keywords = $queryMember->first()->keywords;
+        $keywords = $lineMember->keywords;
 
         return response()
             ->json($keywords);
     }
 
-    public function update($uid)
+    public function update()
     {
-        $queryMember = LineMember::query()
-            ->where(['uid' => $uid]);
+        $lineMember = auth('api')->user();
 
-        if(!$queryMember->exists())
+        if(!$lineMember)
         {
             return response()
                 ->json('not found line member')
                 ->setStatusCode(404);
         }
-
-        $lineMember = $queryMember->first();
 
         $lineMember->keywords()->delete();
 
