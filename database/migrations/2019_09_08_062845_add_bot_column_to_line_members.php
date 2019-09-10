@@ -14,8 +14,12 @@ class AddBotColumnToLineMembers extends Migration
     public function up()
     {
         Schema::table('line_members', function (Blueprint $table) {
-            $table->text('channel_secret');
-            $table->text('channel_token');
+            $table->text('channel_secret')
+                ->nullable()
+                ->after('uid');
+            $table->text('channel_token')
+                ->nullable()
+                ->after('channel_secret');
         });
     }
 

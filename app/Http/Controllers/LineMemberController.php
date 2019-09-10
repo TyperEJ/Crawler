@@ -3,34 +3,56 @@
 namespace App\Http\Controllers;
 
 use App\Models\Entities\LineMember;
-use App\Models\Entities\MemberBoardKeyword;
-use Illuminate\Http\Request;
+use TyperEJ\LineLogin\Login;
 
 class LineMemberController extends Controller
 {
-    public function show($uid)
+    public function register(Login $login)
     {
-        $lineMember = LineMember::query()
-            ->with('keywords')
-            ->firstOrCreate(['uid' => $uid]);
+        $options = [
+            'state' => 'default',
+            'redirect_uri' => request()->get('url'),
+        ];
 
-        return $lineMember;
+        $url = $login->generateLoginUrl($options);
+
+        return $url;
     }
 
-    public function store(Request $request)
+    public function callback(Login $login)
     {
-        $uid = $request->get('uid');
+        if(!request()->exists('code'))
+        {
+            return response()
+                ->json('code is required')
+                ->setStatusCode(400);
+        }
 
-        $lineMember = LineMember::firstOrNew(
-            [
-                'uid' =>$uid
-            ]
-        );
+        $code = request()->get('code');
 
-        $lineMember->keywords()->delete();
+        try{
 
-        $keywords =  $request->get('keywords');
+            $user = $login->requestToken($code,request()->get('url'));
 
-        $lineMember->keywords()->createMany($keywords);
+            $uid = $user->sub;
+
+        }catch (\Exception $e){
+            return response()
+                ->json('please login again')
+                ->setStatusCode(400);
+        }
+
+        $lineMember = LineMember::query()->firstOrCreate([
+            'uid' => $uid
+        ]);
+
+        $token = auth('api')->login($lineMember);
+
+        return response()
+            ->json([
+                'uid' => $uid,
+                'token' => $token
+            ])
+            ->setStatusCode(200);
     }
 }

@@ -15,7 +15,7 @@ class CreateMemberBoardKeywordsTable extends Migration
     {
         Schema::create('member_board_keywords', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('line_member_id');
+            $table->string('line_member_uid');
             $table->string('board');
             $table->string('keyword');
             $table->timestamps();

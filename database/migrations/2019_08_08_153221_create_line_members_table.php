@@ -14,8 +14,8 @@ class CreateLineMembersTable extends Migration
     public function up()
     {
         Schema::create('line_members', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('uid');
+            $table->string('uid')
+                ->primary();
             $table->timestamps();
         });
     }

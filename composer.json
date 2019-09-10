@@ -14,7 +14,9 @@
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "linecorp/line-bot-sdk": "^3.13",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "tymon/jwt-auth": "^1.0",
+        "typerej/line-login": "dev-master"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
