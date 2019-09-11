@@ -3,27 +3,13 @@
 namespace App\Listeners;
 
 use App\Events\PttArticleCreated;
+use App\Models\Bot\BotFactory;
 use App\Models\Entities\MemberBoardKeyword;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Str;
-use LINE\LINEBot;
 
 class FilterMember implements ShouldQueue
 {
-    protected $bot;
-
-    /**
-     * Create the event listener.
-     *
-     * @param LINEBot $bot
-     * @return void
-     */
-    public function __construct(LINEBot $bot)
-    {
-        $this->bot = $bot;
-    }
-
     /**
      * Handle the event.
      *
@@ -36,7 +22,6 @@ class FilterMember implements ShouldQueue
 
         $boardKeywords = MemberBoardKeyword::query()
             ->where(['board' => $article->board])
-            ->with('lineMember')
             ->get();
 
         $filtered = $boardKeywords->filter(function($boardKeyword) use ($article){
@@ -46,10 +31,12 @@ class FilterMember implements ShouldQueue
             return $this->contains($title, $keyword);
         });
 
-        $memberUids = $filtered->pluck('lineMember.uid')->unique();
+        $filtered->each(function($boardKeyword) use ($article){
 
-        $memberUids->map(function($memberUid) use ($article){
-            $this->bot->pushMessage($memberUid,$article->getMessageBuilder());
+            $bot = BotFactory::make($boardKeyword->lineMember);
+
+            $bot->broadcast($article->getMessageBuilder());
+
         });
     }
 
