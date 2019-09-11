@@ -22,7 +22,7 @@ class LineBotProvider extends ServiceProvider
      */
     public function boot()
     {
-        $lineMember = auth()->user();
+        $lineMember = auth('api')->user();
 
         $channelToken = $lineMember->channel_token;
 
