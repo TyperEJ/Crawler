@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Enums\BoardListEnum;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,14 +25,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('crawler:start', ['Lifeismoney'])
-            ->everyMinute();
-        $schedule->command('crawler:start', ['MacShop'])
-            ->everyMinute();
-        $schedule->command('crawler:start', ['MobilePay'])
-            ->everyMinute();
-        $schedule->command('crawler:start', ['soho'])
-            ->everyMinute();
+        foreach (BoardListEnum::getList() as $board){
+            $schedule->command('crawler:start', [$board])
+                ->withoutOverlapping()
+                ->everyMinute()
+                ->runInBackground();
+        }
     }
 
     /**
