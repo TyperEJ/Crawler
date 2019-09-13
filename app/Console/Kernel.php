@@ -27,9 +27,7 @@ class Kernel extends ConsoleKernel
     {
         foreach (BoardListEnum::getList() as $board){
             $schedule->command('crawler:start', [$board])
-                ->withoutOverlapping()
-                ->everyMinute()
-                ->runInBackground();
+                ->everyMinute();
         }
     }
 

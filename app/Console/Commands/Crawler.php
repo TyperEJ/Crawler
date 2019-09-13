@@ -83,7 +83,7 @@ class Crawler extends Command
             }
         }
 
-        $articles->map(function($article) use ($board){
+        $articles->each(function($article) use ($board){
 
             array_push($article,$board);
 
