@@ -36,6 +36,7 @@ class BoardListEnum
     const PLAY_STATION = 'PlayStation';
     const HOME_SALE = 'home-sale';
     const CODE_JOB = 'CodeJob';
+    const TEST = 'Test';
 
     public static function getList()
     {
@@ -72,6 +73,7 @@ class BoardListEnum
 //            self::PLAY_STATION,
             self::HOME_SALE,
             self::CODE_JOB,
+            self::TEST,
         ];
     }
 }
