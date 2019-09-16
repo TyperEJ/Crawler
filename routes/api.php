@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 Route::get('/register', 'LineMemberController@register');
 Route::get('/callback', 'LineMemberController@callback');
 
-Route::middleware('jwt.auth')->group(function () {
+Route::middleware('jwt.auth','register')->group(function () {
     Route::get('/bot','BotController@index');
     Route::post('/bot','BotController@update');
 

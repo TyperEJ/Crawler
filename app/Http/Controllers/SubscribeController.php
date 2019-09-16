@@ -16,13 +16,6 @@ class SubscribeController extends Controller
     {
         $lineMember = auth('api')->user();
 
-        if(!$lineMember)
-        {
-            return response()
-                ->json('not found line member')
-                ->setStatusCode(404);
-        }
-
         $keywords = $lineMember->keywords;
 
         return response()
@@ -32,13 +25,6 @@ class SubscribeController extends Controller
     public function update()
     {
         $lineMember = auth('api')->user();
-
-        if(!$lineMember)
-        {
-            return response()
-                ->json('not found line member')
-                ->setStatusCode(404);
-        }
 
         $lineMember->keywords()->delete();
 
