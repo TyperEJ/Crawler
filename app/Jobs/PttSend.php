@@ -86,7 +86,13 @@ class PttSend implements ShouldQueue
 
         $input->write("{$lineMember->ptt_password}"."\r");
 
-        $input->write("\r");
+        $input->write("n\r\r\r\r\r");
+
+        $input->write("\x1b\x4fD");
+
+        $input->write("\x1b\x4fD");
+
+        $input->write("\x1b\x4fD");
 
         $input->write("\x1b\x4fB");
 
@@ -123,8 +129,6 @@ class PttSend implements ShouldQueue
         $input->close();
 
         $process->wait();
-
-        $process->stop();
 
         if(!$process->isSuccessful()){
             throw new ProcessFailedException($process);
