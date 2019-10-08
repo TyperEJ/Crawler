@@ -48,12 +48,15 @@ class PttCrawler
             {
                 $uri = $node->filter('a')->link()->getUri();
 
+                $author = $node->filter('.author')->text();
+
                 $articleId = substr($uri, -23,18);
 
                 return [
                     $articleId,
                     $node->filter('a')->text(),
-                    $uri
+                    $uri,
+                    $author
                 ];
             }
 

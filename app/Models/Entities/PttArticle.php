@@ -16,6 +16,7 @@ class PttArticle extends Model
         'article_id',
         'title',
         'origin_url',
+        'author',
         'short_url',
         'content'
     ];

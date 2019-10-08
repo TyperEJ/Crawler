@@ -14,7 +14,7 @@ class ProcessPttArticle implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $attributes = ['article_id','title','origin_url','board'];
+    protected $attributes = ['article_id','title','origin_url', 'author', 'board'];
     protected $article;
     protected $client;
 
