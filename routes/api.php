@@ -17,11 +17,14 @@ Route::get('/register', 'LineMemberController@register');
 Route::get('/callback', 'LineMemberController@callback');
 
 Route::middleware('jwt.auth','register')->group(function () {
-    Route::get('/bot','BotController@index');
-    Route::post('/bot','BotController@update');
+    Route::get('/ptt-account','PttAccountController@index');
+    Route::post('/ptt-account','PttAccountController@update');
 
     Route::get('/board','SubscribeController@listBoard');
 
     Route::get('/subscribe','SubscribeController@index');
     Route::post('/subscribe','SubscribeController@update');
+
+    Route::get('/notify/register','NotifyController@register');
+    Route::get('/notify/callback','NotifyController@callback');
 });

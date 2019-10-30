@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\PttArticleCreated;
 use App\Models\Bot\BotFactory;
 use App\Models\Entities\MemberBoardKeyword;
+use App\Models\Pusher\Pusher;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -33,9 +34,9 @@ class FilterMember implements ShouldQueue
 
         $filtered->each(function($boardKeyword) use ($article){
 
-            $bot = BotFactory::make($boardKeyword->lineMember);
+            $pusher = app(Pusher::class);
 
-            $bot->broadcast($article->getMessageBuilder());
+            $pusher::push($boardKeyword->lineMember,$article);
 
         });
     }

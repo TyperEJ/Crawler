@@ -19,6 +19,7 @@ class LineMember extends Model implements AuthenticatableContract,JWTSubject
         'channel_token',
         'ptt_account',
         'ptt_password',
+        'notify_token',
     ];
 
     protected $hidden = ['uid','created_at','updated_at'];

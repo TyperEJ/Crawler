@@ -26,9 +26,14 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         foreach (BoardListEnum::getList() as $board){
-            $schedule->command('crawler:start', [$board])
+            $schedule
+                ->command('crawler:start', [$board])
                 ->everyMinute();
         }
+
+        $schedule
+            ->command('delete:expired')
+            ->daily();
     }
 
     /**

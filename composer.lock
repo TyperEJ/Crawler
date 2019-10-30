@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ce3a41b553b1936fce382b8252c7d21e",
+    "content-hash": "8d6a7bf8ef76925c883149f1af9f1c56",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -4203,6 +4203,38 @@
             "time": "2019-08-22T02:58:59+00:00"
         },
         {
+            "name": "typerej/line-notify",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TyperEJ/LineNotify.git",
+                "reference": "babcb81f0792fe050b441a3953947382ae88a861"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TyperEJ/LineNotify/zipball/babcb81f0792fe050b441a3953947382ae88a861",
+                "reference": "babcb81f0792fe050b441a3953947382ae88a861",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TyperEJ\\LineNotify\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "line-notify",
+            "time": "2019-10-30T07:27:42+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v3.5.0",
             "source": {
@@ -6027,7 +6059,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "typerej/line-login": 20
+        "typerej/line-login": 20,
+        "typerej/line-notify": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
