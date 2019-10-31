@@ -48,4 +48,15 @@ class NotifyController extends Controller
             ->json('success')
             ->setStatusCode(200);
     }
+
+    public function isRegistered()
+    {
+        $lineMember = auth('api')->user();
+
+        $boolean =  $lineMember->notify_token ? true : false;
+
+        return response()
+            ->json($boolean)
+            ->setStatusCode(200);
+    }
 }

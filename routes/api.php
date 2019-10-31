@@ -27,4 +27,5 @@ Route::middleware('jwt.auth','register')->group(function () {
 
     Route::get('/notify/register','NotifyController@register');
     Route::get('/notify/callback','NotifyController@callback');
+    Route::get('/notify/isRegistered','NotifyController@isRegistered');
 });
