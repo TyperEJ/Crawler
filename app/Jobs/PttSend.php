@@ -10,6 +10,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Log;
+use LINE\LINEBot;
+use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\InputStream;
 use Symfony\Component\Process\Process;
@@ -39,7 +41,7 @@ class PttSend implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(LINEBot $bot)
     {
         try{
             $pttArticleId = $this->parameters
@@ -66,10 +68,20 @@ class PttSend implements ShouldQueue
                 ->firstOrFail();
 
             $this->send($lineMember,$article,$mailContent);
+
+            $replyMessage = new TextMessageBuilder('好的，信件已經送出。');
         }catch (\Exception $e)
         {
             Log::error($e->getMessage());
+
+            $replyMessage = new TextMessageBuilder('發生一點小錯誤，請確認是否填寫Ptt會員登入資料或連繫開發人員。');
         }
+
+        $replyToken = $this->linePayload
+            ->data
+            ->replyToken;
+
+        $bot->replyMessage($replyToken,$replyMessage);
     }
 
     protected function send(LineMember $lineMember,PttArticle $article,$mailContent)
