@@ -27,6 +27,7 @@ class PttArticle extends Model
     public function getText()
     {
         $text = <<<TEXT
+
 {$this->title}
 {$this->origin_url}
 TEXT;
