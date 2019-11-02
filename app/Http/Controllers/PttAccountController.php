@@ -11,7 +11,7 @@ class PttAccountController extends Controller
         return response()
             ->json([
                 'account' => $lineMember->ptt_account,
-                'password' => $lineMember->ptt_password,
+                'password' => decrypt($lineMember->ptt_password),
             ]);
     }
 
@@ -20,7 +20,7 @@ class PttAccountController extends Controller
         $lineMember = auth('api')->user();
 
         $lineMember->ptt_account = request()->post('account');
-        $lineMember->ptt_password = request()->post('password');
+        $lineMember->ptt_password = encrypt(request()->post('password'));
 
         $lineMember->save();
 

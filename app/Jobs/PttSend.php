@@ -96,7 +96,9 @@ class PttSend implements ShouldQueue
 
         $input->write("{$lineMember->ptt_account},"."\r");
 
-        $input->write("{$lineMember->ptt_password}"."\r");
+        $pttPassword = decrypt($lineMember->ptt_password);
+
+        $input->write("{$pttPassword}"."\r");
 
         $input->write("n\r\r\r\r\r");
 
