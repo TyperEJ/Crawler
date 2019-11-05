@@ -89,6 +89,15 @@ return [
             'driver' => 'errorlog',
             'level' => 'debug',
         ],
+
+        'push_message' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/push_message/push_message.log'),
+            'level' => 'debug',
+            'days' => 7,
+            'permission' => 0755
+        ],
+
     ],
 
 ];
