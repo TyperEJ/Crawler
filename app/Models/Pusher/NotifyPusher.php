@@ -12,6 +12,12 @@ class NotifyPusher implements Pusher
 {
     public static function push(LineMember $lineMember, PttArticle $pttArticle)
     {
+
+        if(!$lineMember->notify_token)
+        {
+            return ;
+        }
+
         Log::channel('push_message')->info($lineMember.'::'.$pttArticle);
 
         $message = new Message($pttArticle->getText());
