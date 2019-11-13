@@ -75,9 +75,9 @@ class PttCrawler
             $articles = array_slice($articles, 0, $offsetKey);
         }
 
-        $articles = array_filter(array_reverse($articles));
+        $articles = array_filter($articles);
 
-        $this->articles = array_merge($this->articles,$articles);
+        $this->articles = array_merge($articles,$this->articles);
 
         $link = $crawler->selectLink('‹ 上頁')->link();
 
@@ -88,6 +88,6 @@ class PttCrawler
 
     public function getArticles()
     {
-        return array_reverse($this->articles);
+        return $this->articles;
     }
 }
