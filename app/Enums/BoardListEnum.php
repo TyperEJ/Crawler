@@ -36,6 +36,7 @@ class BoardListEnum
     const PLAY_STATION = 'PlayStation';
     const HOME_SALE = 'home-sale';
     const CODE_JOB = 'CodeJob';
+    const ZASTROLOGY = 'Zastrology';
     const TEST = 'Test';
 
     public static function getList()
@@ -51,7 +52,7 @@ class BoardListEnum
             self::BUY_TOGETHER,
             self::DRAMA_TICKET,
 //            self::CREDITCARD,
-            self::HARDWARE_SALE,
+//            self::HARDWARE_SALE,
             self::MOBILESALES,
             self::GAMESALE,
             self::PC_SHOPPING,
@@ -73,6 +74,7 @@ class BoardListEnum
 //            self::PLAY_STATION,
             self::HOME_SALE,
             self::CODE_JOB,
+            self::ZASTROLOGY,
             self::TEST,
         ];
     }
