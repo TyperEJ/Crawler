@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use TyperEJ\LineNotify\Message;
 use TyperEJ\LineNotify\Notify;
 
 class NotifyController extends Controller
@@ -43,6 +44,8 @@ class NotifyController extends Controller
         $lineMember->notify_token = $token;
 
         $lineMember->save();
+
+        Notify::sendMessage($token,new Message("\n訂閱成功，感謝您的訂閱:)"));
 
         return response()
             ->json('success')
