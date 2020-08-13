@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    This is EJLin啦。
                 </div>
 
                 <div class="links">
