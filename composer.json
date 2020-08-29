@@ -16,6 +16,7 @@
         "linecorp/line-bot-sdk": "^3.13",
         "predis/predis": "^1.1",
         "ratchet/pawl": "^0.3.4",
+        "swooletw/laravel-swoole": "^2.6",
         "tymon/jwt-auth": "^1.0",
         "typerej/line-login": "dev-master",
         "typerej/line-notify": "dev-master"
