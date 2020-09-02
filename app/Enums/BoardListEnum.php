@@ -44,7 +44,7 @@ class BoardListEnum
         return [
             self::MAC_SHOP,
             self::LIFE_IS_MONEY,
-            self::MOBILE_PAY,
+//            self::MOBILE_PAY,
             self::SOHO,
 //            self::IOS,
 //            self::STEAM,
@@ -52,7 +52,7 @@ class BoardListEnum
             self::BUY_TOGETHER,
             self::DRAMA_TICKET,
 //            self::CREDITCARD,
-//            self::HARDWARE_SALE,
+            self::HARDWARE_SALE,
             self::MOBILESALES,
 //            self::GAMESALE,
 //            self::PC_SHOPPING,
