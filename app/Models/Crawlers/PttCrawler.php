@@ -79,9 +79,14 @@ class PttCrawler
 
         $this->articles = array_merge($articles,$this->articles);
 
-        $link = $crawler->selectLink('‹ 上頁')->link();
+        $selectLink = $crawler->selectLink('‹ 上頁');
 
-        $nextPageCrawler = $this->client->click($link);
+        if(!$selectLink->count())
+        {
+            return false;
+        }
+
+        $nextPageCrawler = $this->client->click($selectLink->link());
 
         return $this->crawled($nextPageCrawler,++$depth);
     }
